@@ -124,13 +124,13 @@ public class ComponentAssemblyRecipeCategory extends ThermalRecipeCategory<Compo
         }
 
         builder.addSlot(RecipeIngredientRole.INPUT, 29, 11)
-                .addIngredients(ForgeTypes.FLUID_STACK, inputFluids.size() == 0 ? List.of(FluidStack.EMPTY): List.of(inputFluids.get(0).getFluids()))
+                .addIngredients(ForgeTypes.FLUID_STACK, inputFluids.size() == 0 ? List.of(): List.of(inputFluids.get(0).getFluids()))
                 .setFluidRenderer(tankSize(TANK_MEDIUM), false, 16, 40)
                 .setOverlay(inputOverlay, 0, 0)
                 .addTooltipCallback(defaultFluidTooltip());
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 152, 11)
-                .addIngredients(ForgeTypes.FLUID_STACK, outputFluids.isEmpty() ? List.of(FluidStack.EMPTY) : List.of(outputFluids.get(0)))
+                .addIngredients(ForgeTypes.FLUID_STACK, outputFluids.isEmpty() ? List.of() : List.of(outputFluids.get(0)))
                 .setFluidRenderer(tankSize(TANK_MEDIUM), false, 16, 40)
                 .setOverlay(outputOverlay, 0, 0)
                 .addTooltipCallback(defaultFluidTooltip());
