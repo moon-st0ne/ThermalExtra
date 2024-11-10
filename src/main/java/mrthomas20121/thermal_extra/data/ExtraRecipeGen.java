@@ -909,7 +909,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
                 .energy(30000)
                 .input(FluidIngredient.of(new FluidStack(TCoreFluids.RESIN_FLUID.get(), 1000)))
                 .output(ThermalExtraItems.STICKY_BALL.get())
-                .save(consumer, "thermal_extra:machine/chiller/polyolefin");
+                .save(consumer, "thermal_extra:machine/chiller/sticky_ball");
 
         MachineRecipeBuilder.smelter()
                 .input(ThermalExtraTags.Items.DUSTS_SOUL_SAND, 2)
@@ -970,6 +970,36 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
                 .input(ThermalExtraTags.Items.ABYSSAL_DUST)
                 .output(ThermalExtraItems.ABYSSAL_INGOT.get())
                 .save(consumer, modLoc("machine/smelter/abyssal_ingot_from_dust"));
+
+        MachineRecipeBuilder.smelter()
+                .input(ThermalExtraTags.Items.SOUL_INFUSED_INGOT)
+                .input(ITEMS.get(ThermalIDs.ID_OBSIDIAN_GLASS))
+                .output(ThermalExtraBlocks.SOUL_INFUSED_GLASS.get())
+                .save(consumer, modLoc("machine/smelter/soul_infused_glass"));
+
+        MachineRecipeBuilder.smelter()
+                .input(ThermalExtraTags.Items.TWINITE_INGOT)
+                .input(ITEMS.get(ThermalIDs.ID_OBSIDIAN_GLASS))
+                .output(ThermalExtraBlocks.TWINITE_GLASS.get())
+                .save(consumer, modLoc("machine/smelter/twinite_glass"));
+
+        MachineRecipeBuilder.smelter()
+                .input(ThermalExtraTags.Items.SHELLITE_INGOT)
+                .input(ITEMS.get(ThermalIDs.ID_OBSIDIAN_GLASS))
+                .output(ThermalExtraBlocks.SHELLITE_GLASS.get())
+                .save(consumer, modLoc("machine/smelter/shellite_glass"));
+
+        MachineRecipeBuilder.smelter()
+                .input(ThermalExtraTags.Items.DRAGONSTEEL_INGOT)
+                .input(ITEMS.get(ThermalIDs.ID_OBSIDIAN_GLASS))
+                .output(ThermalExtraBlocks.DRAGONSTEEL_GLASS.get())
+                .save(consumer, modLoc("machine/smelter/dragonsteel_glass"));
+
+        MachineRecipeBuilder.smelter()
+                .input(ThermalExtraTags.Items.ABYSSAL_INGOT)
+                .input(ITEMS.get(ThermalIDs.ID_OBSIDIAN_GLASS))
+                .output(ThermalExtraBlocks.ABYSSAL_GLASS.get())
+                .save(consumer, modLoc("machine/smelter/abyssal_glass"));
 
         MachineRecipeBuilder.component_assembly()
                 .energy(5000)

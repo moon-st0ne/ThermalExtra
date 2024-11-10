@@ -14,6 +14,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -193,12 +194,12 @@ public class MachineRecipeBuilder<T extends ThermalRecipe> {
         return this;
     }
 
-    public MachineRecipeBuilder<T> output(Item item, int count) {
+    public MachineRecipeBuilder<T> output(ItemLike item, int count) {
         return this.output(new ItemStack(item, count));
     }
 
 
-    public MachineRecipeBuilder<T> output(Item item) {
+    public MachineRecipeBuilder<T> output(ItemLike item) {
         this.output(new ItemStack(item));
         return this;
     }
