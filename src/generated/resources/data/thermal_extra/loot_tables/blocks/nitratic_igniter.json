@@ -11,6 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "cofh_core:nbt_sync"
+            }
+          ],
           "name": "thermal_extra:nitratic_igniter"
         }
       ],
