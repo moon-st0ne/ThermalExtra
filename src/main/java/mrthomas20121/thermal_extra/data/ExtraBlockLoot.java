@@ -1,5 +1,7 @@
 package mrthomas20121.thermal_extra.data;
 
+import cofh.core.common.block.EntityBlockActive4Way;
+import cofh.core.common.block.EntityBlockActive6Way;
 import cofh.lib.init.data.loot.BlockLootSubProviderCoFH;
 import mrthomas20121.thermal_extra.ThermalExtra;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +17,9 @@ public class ExtraBlockLoot extends BlockLootSubProviderCoFH {
                 .map(ForgeRegistries.BLOCKS::getValue).toList().forEach(block -> {
                     if(block instanceof GlassBlock) {
                         dropWhenSilkTouch(block);
+                    }
+                    else if(block instanceof EntityBlockActive6Way || block instanceof EntityBlockActive4Way) {
+                        createSyncDropTable(block);
                     }
                     else {
                         dropSelf(block);
