@@ -1,5 +1,6 @@
 package mrthomas20121.thermal_extra.data;
 
+import cofh.core.init.CoreFluids;
 import cofh.lib.common.fluid.FluidIngredient;
 import cofh.lib.init.data.RecipeProviderCoFH;
 import cofh.lib.init.tags.FluidTagsCoFH;
@@ -346,7 +347,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
 
         MachineRecipeBuilder.crystallizer()
                 .energy(10000)
-                .input(Fluids.WATER, 1000)
+                .input(TCoreFluids.GLOWSTONE_FLUID.get(), 1000)
                 .input(ThermalExtraItems.ANCIENT_DUST.get())
                 .output(ThermalExtraItems.ANCIENT_DUST.get(), 2)
                 .save(consumer, "thermal_extra:machine/crystallizer/ancient_dust");
@@ -377,25 +378,25 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
 
         MachineRecipeBuilder.pulverizer()
                 .energy(5000)
-                .input(ThermalExtraTags.Items.SOUL_INFUSED_DUST)
+                .input(ThermalExtraTags.Items.SOUL_INFUSED_INGOT)
                 .output(ThermalExtraItems.SOUL_INFUSED_DUST.get())
                 .save(consumer, modLoc("machine/pulverizer/soul_infused_dust"));
 
         MachineRecipeBuilder.pulverizer()
                 .energy(5000)
-                .input(ThermalExtraTags.Items.TWINITE_DUST)
+                .input(ThermalExtraTags.Items.TWINITE_INGOT)
                 .output(ThermalExtraItems.TWINITE_DUST.get())
                 .save(consumer, modLoc("machine/pulverizer/twinite_dust"));
 
         MachineRecipeBuilder.pulverizer()
                 .energy(5000)
-                .input(ThermalExtraTags.Items.SHELLITE_DUST)
+                .input(ThermalExtraTags.Items.SHELLITE_INGOT)
                 .output(ThermalExtraItems.SHELLITE_DUST.get())
                 .save(consumer, modLoc("machine/pulverizer/shellite_dust"));
 
         MachineRecipeBuilder.pulverizer()
                 .energy(5000)
-                .input(ThermalExtraTags.Items.DRAGONSTEEL_DUST)
+                .input(ThermalExtraTags.Items.DRAGONSTEEL_INGOT)
                 .output(ThermalExtraItems.DRAGONSTEEL_DUST.get())
                 .save(consumer, modLoc("machine/pulverizer/dragonsteel_dust"));
 
