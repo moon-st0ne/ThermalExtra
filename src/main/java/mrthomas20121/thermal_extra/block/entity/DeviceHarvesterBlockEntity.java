@@ -6,9 +6,10 @@ import cofh.lib.api.block.entity.ITickableTile;
 import cofh.lib.common.energy.EnergyStorageCoFH;
 import cofh.lib.common.inventory.ItemStorageCoFH;
 import cofh.thermal.core.common.config.ThermalCoreConfig;
-import cofh.thermal.core.common.inventory.device.DeviceSoilInfuserMenu;
 import cofh.thermal.lib.common.block.entity.AugmentableBlockEntity;
 import cofh.thermal.lib.util.ThermalEnergyHelper;
+import mrthomas20121.thermal_extra.init.ThermalExtraBlockEntities;
+import mrthomas20121.thermal_extra.inventory.device.DeviceHarvesterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
@@ -33,7 +34,6 @@ import static cofh.core.util.helpers.AugmentableHelper.getAttributeMod;
 import static cofh.core.util.helpers.AugmentableHelper.getAttributeModWithDefault;
 import static cofh.lib.api.StorageGroup.INTERNAL;
 import static cofh.lib.util.constants.NBTTags.*;
-import static cofh.thermal.core.init.registries.TCoreBlockEntities.DEVICE_SOIL_INFUSER_TILE;
 import static cofh.thermal.lib.util.ThermalAugmentRules.createAllowValidator;
 
 public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implements ITickableTile.IServerTickable, IAreaEffectTile {
@@ -58,7 +58,7 @@ public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implement
 
     public DeviceHarvesterBlockEntity(BlockPos pos, BlockState state) {
 
-        super(DEVICE_SOIL_INFUSER_TILE.get(), pos, state);
+        super(ThermalExtraBlockEntities.HARVESTER.get(), pos, state);
         energyStorage = new EnergyStorageCoFH(BASE_ENERGY, BASE_ENERGY / 50);
 
         inventory.addSlot(chargeSlot, INTERNAL);
@@ -94,7 +94,7 @@ public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implement
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
 
-        return new DeviceSoilInfuserMenu(i, level, worldPosition, inventory, player);
+        return new DeviceHarvesterMenu(i, level, worldPosition, inventory, player);
     }
 
     // region GUI

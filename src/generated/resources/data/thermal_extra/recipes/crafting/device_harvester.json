@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "tag": "forge:storage_blocks/copper"
+    },
+    "H": {
+      "tag": "minecraft:hoes"
+    },
+    "I": {
+      "tag": "forge:gears/iron"
+    },
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "R": {
+      "item": "thermal:redstone_servo"
+    }
+  },
+  "pattern": [
+    "CPC",
+    "PHP",
+    "IRI"
+  ],
+  "result": {
+    "item": "thermal_extra:device_harvester"
+  },
+  "show_notification": true
+}

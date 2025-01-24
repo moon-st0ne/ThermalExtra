@@ -281,6 +281,18 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
                 .unlockedBy("has_redstone_servo", has(ThermalCore.ITEMS.get("redstone_servo")))
                 .save(consumer, this.modid + ":crafting/device_lava_gen");
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.REDSTONE, ThermalExtraBlocks.HARVESTER.get())
+                .define('C', Tags.Items.STORAGE_BLOCKS_COPPER)
+                .define('R', ThermalCore.ITEMS.get("redstone_servo"))
+                .define('I', ItemTagsCoFH.GEARS_IRON)
+                .define('P', ItemTags.PLANKS)
+                .define('H', ItemTags.HOES)
+                .pattern("CPC")
+                .pattern("PHP")
+                .pattern("IRI")
+                .unlockedBy("has_redstone_servo", has(ThermalCore.ITEMS.get("redstone_servo")))
+                .save(consumer, this.modid + ":crafting/device_harvester");
+
         Map<String, TagKey<Item>> materials = of(new String[] {
                 "copper",
                 "iron",
