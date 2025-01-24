@@ -41,6 +41,7 @@ public class ThermalExtraCreativeTabs {
             .icon(() -> new ItemStack(ThermalExtraItems.DYNAMO_COLD.get()))
             .title(Component.translatable("creative_tab.thermal_extra.machines"))
             .displayItems((feature, output) -> {
+                output.accept(ThermalExtraBlocks.HARVESTER.get());
                 output.accept(ThermalExtraBlocks.LAVA_GEN.get());
                 output.accept(ThermalExtraBlocks.DYNAMO_COLD.get());
                 output.accept(ThermalExtraBlocks.ADVANCED_REFINERY.get());

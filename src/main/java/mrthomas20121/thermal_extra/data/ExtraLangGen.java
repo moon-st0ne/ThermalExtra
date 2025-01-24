@@ -29,6 +29,8 @@ public class ExtraLangGen extends LanguageProvider {
         add("info.thermal_extra.machine_nitratic_igniter.0", "Create an Item by exploding other items together.");
         add("info.thermal_extra.machine_fluid_mixer.0", "Mix fluids together to create other fluids");
         add("info.thermal_extra.require_catalyst", "Catalyst is required.");
+        add("info.thermal_extra.device_harvester.0", "Break crops and other stuff when they are ready to be harvested.");
+        add("info.thermal_extra.device_harvester.1", "Note that this only break the crop, you need another block to gather the drops.");
         add("info.thermal_extra.lava_gen.0", "Magmatic Accumulator generate Lava if it has 2 or more adjacent lava blocks.");
         add("info.thermal_extra.lava_gen_nether.0", "Generate more Lava in the nether.");
         add("info.thermal_extra.endothermic_dehydrator.0", "Evaporate a fluid into items.");
@@ -110,6 +112,7 @@ public class ExtraLangGen extends LanguageProvider {
         addBlock(ThermalExtraBlocks.BLOCKS.getSup("component_assembly"), "Component Assembly");
         addBlock(ThermalExtraBlocks.BLOCKS.getSup("endothermic_dehydrator"), "Endothermic Dehydrator");
         addBlock(ThermalExtraBlocks.BLOCKS.getSup("device_lava_gen"), "Magmatic Accumulator");
+        addBlock(ThermalExtraBlocks.BLOCKS.getSup("device_harvester"), "Crop Harvester");
 
         // jerky
         addItem(ThermalExtraItems.BEEF_JERKY, "Beef Jerky");

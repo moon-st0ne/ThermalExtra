@@ -4,6 +4,7 @@ import cofh.core.client.event.CoreClientEvents;
 import cofh.core.common.config.ConfigManager;
 import mrthomas20121.thermal_extra.client.screens.AdvancedItemFilterScreen;
 import mrthomas20121.thermal_extra.client.screens.DynamoFrostScreen;
+import mrthomas20121.thermal_extra.client.screens.device.DeviceHarvesterScreen;
 import mrthomas20121.thermal_extra.client.screens.device.DeviceLavaGenScreen;
 import mrthomas20121.thermal_extra.client.screens.machine.*;
 import mrthomas20121.thermal_extra.data.*;
@@ -69,6 +70,7 @@ public class ThermalExtra {
 			MenuScreens.register(ThermalExtraContainers.FLUID_MIXER_CONTAINER.get(), MachineFluidMixerScreen::new);
 			MenuScreens.register(ThermalExtraContainers.DYNAMO_FROST_CONTAINER.get(), DynamoFrostScreen::new);
 			MenuScreens.register(ThermalExtraContainers.ADVANCED_ITEM_FILTER_CONTAINER.get(), AdvancedItemFilterScreen::new);
+			MenuScreens.register(ThermalExtraContainers.HARVESTER_CONTAINER.get(), DeviceHarvesterScreen::new);
 			MenuScreens.register(ThermalExtraContainers.LAVA_GEN_CONTAINER.get(), DeviceLavaGenScreen::new);
 			MenuScreens.register(ThermalExtraContainers.COMPONENT_ASSEMBLY_CONTAINER.get(), MachineComponentAssemblyScreen::new);
 			MenuScreens.register(ThermalExtraContainers.ENDOTHERMIC_DEHYDRATOR_CONTAINER.get(), MachineEndothermicDehydratorScreen::new);

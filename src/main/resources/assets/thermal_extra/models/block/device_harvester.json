@@ -1,0 +1,12 @@
+{
+  "parent": "thermal:block/device_base",
+  "textures": {
+    "particle": "thermal_extra:block/devices/device_harvester_side",
+    "down": "thermal_extra:block/devices/device_harvester_bottom",
+    "up": "thermal_extra:block/devices/device_harvester_top",
+    "east": "thermal_extra:block/devices/device_harvester_east",
+    "west": "thermal_extra:block/devices/device_harvester_west",
+    "north": "thermal_extra:block/devices/device_harvester",
+    "south": "thermal_extra:block/devices/device_harvester_side"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "thermal_extra:block/device_harvester",
+  "textures": {
+    "up": "thermal_extra:block/devices/device_harvester_top_active",
+    "north": "thermal_extra:block/devices/device_harvester_active"
+  }
+}

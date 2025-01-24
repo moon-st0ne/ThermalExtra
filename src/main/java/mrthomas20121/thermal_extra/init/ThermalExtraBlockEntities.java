@@ -18,6 +18,8 @@ public class ThermalExtraBlockEntities {
     public static RegistryObject<BlockEntityType<?>> COMPONENT_ASSEMBLY = BLOCK_ENTITIES.register("component_assembly", () -> BlockEntityType.Builder.of(MachineComponentAssemblyBlockEntity::new, ThermalExtraBlocks.BLOCKS.get("component_assembly")).build(null));
     public static RegistryObject<BlockEntityType<?>> ENDOTHERMIC_DEHYDRATOR = BLOCK_ENTITIES.register("endothermic_dehydrator", () -> BlockEntityType.Builder.of(MachineEndothermicDehydratorBlockEntity::new, ThermalExtraBlocks.BLOCKS.get("endothermic_dehydrator")).build(null));
 
+    public static RegistryObject<BlockEntityType<?>> HARVESTER = BLOCK_ENTITIES.register("harvester", () -> BlockEntityType.Builder.of(DeviceHarvesterBlockEntity::new, ThermalExtraBlocks.BLOCKS.get("device_harvester")).build(null));
+
     public static RegistryObject<BlockEntityType<?>> LAVA_GEN = BLOCK_ENTITIES.register("lava_gen", () -> BlockEntityType.Builder.of(DeviceLavaGenBlockEntity::new, ThermalExtraBlocks.BLOCKS.get("device_lava_gen")).build(null));
 
 }

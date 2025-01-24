@@ -8,7 +8,7 @@
     },
     {
       "amount": 1000,
-      "fluid": "minecraft:water"
+      "fluid": "thermal:glowstone"
     }
   ],
   "result": [

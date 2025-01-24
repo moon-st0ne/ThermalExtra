@@ -1,13 +1,16 @@
 package mrthomas20121.thermal_extra.util;
 
 import cofh.core.common.config.IBaseConfig;
-import cofh.thermal.core.util.managers.machine.FurnaceRecipeManager;
+import mrthomas20121.thermal_extra.block.entity.DeviceHarvesterBlockEntity;
 import mrthomas20121.thermal_extra.recipe.*;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.function.Supplier;
 
 public class ThermalExtraConfig implements IBaseConfig {
+
+    private Supplier<Boolean> harvesterNetherWart;
+    private Supplier<Boolean> harvesterSugarCane;
 
     private Supplier<Integer> dynamoColdPower;
     private Supplier<Integer> machineAdvancedRefineryPower;
@@ -18,6 +21,21 @@ public class ThermalExtraConfig implements IBaseConfig {
 
     @Override
     public void apply(ForgeConfigSpec.Builder builder) {
+        builder.push("Devices");
+
+        builder.push("Harvester");
+
+        harvesterNetherWart = builder
+                .comment("Should Nether Wart be harvestable by the Harvester?")
+                .define("Nether Wart Harvest", true);
+
+        harvesterSugarCane = builder
+                .comment("Should Sugar Cane be harvestable by the Harvester?")
+                .define("Sugar Cane Harvest", true);
+
+        builder.pop();
+        builder.pop();
+
         builder.push("Dynamos");
 
         builder.push("Stirling");
@@ -75,6 +93,15 @@ public class ThermalExtraConfig implements IBaseConfig {
 
     @Override
     public void refresh() {
+
+        if(harvesterSugarCane != null) {
+            DeviceHarvesterBlockEntity.sugarCane = harvesterSugarCane.get();
+        }
+
+        if(harvesterNetherWart != null) {
+            DeviceHarvesterBlockEntity.netherWart = harvesterNetherWart.get();
+        }
+
         if (dynamoColdPower != null) {
             ColdFuelManager.instance().setBasePower(dynamoColdPower.get());
         }

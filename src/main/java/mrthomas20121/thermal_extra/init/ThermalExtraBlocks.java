@@ -59,6 +59,7 @@ public class ThermalExtraBlocks {
     public static RegistryObject<Item> COMPONENT_ASSEMBLY = registerAugmentableBlock("component_assembly", () -> new EntityBlockActive4Way(of().sound(SoundType.NETHERITE_BLOCK).strength(2.0F).lightLevel(lightValue(ACTIVE, 0)), MachineComponentAssemblyBlockEntity.class, ThermalExtraBlockEntities.COMPONENT_ASSEMBLY), () -> ThermalCoreConfig.machineAugments, MACHINE_VALIDATOR, ThermalExtra.MOD_ID);
     public static RegistryObject<Item> ENDOTHERMIC_DEHYDRATOR = registerAugmentableBlock("endothermic_dehydrator", () -> new EntityBlockActive4Way(of().sound(SoundType.NETHERITE_BLOCK).strength(2.0F).lightLevel(lightValue(ACTIVE, 0)), MachineEndothermicDehydratorBlockEntity.class, ThermalExtraBlockEntities.ENDOTHERMIC_DEHYDRATOR), () -> ThermalCoreConfig.machineAugments, MACHINE_VALIDATOR, ThermalExtra.MOD_ID);
     public static RegistryObject<Item> LAVA_GEN = registerAugmentableBlock("device_lava_gen", () -> new EntityBlockActive4Way(of().sound(SoundType.LANTERN).strength(2.0F), DeviceLavaGenBlockEntity.class, ThermalExtraBlockEntities.LAVA_GEN), () -> ThermalCoreConfig.deviceAugments, DeviceLavaGenBlockEntity.AUG_VALIDATOR);
+    public static RegistryObject<Item> HARVESTER = registerAugmentableBlock("device_harvester", () -> new EntityBlockActive4Way(of().sound(SoundType.NETHER_WOOD).strength(2.0F), DeviceHarvesterBlockEntity.class, ThermalExtraBlockEntities.HARVESTER), () -> ThermalCoreConfig.deviceAugments, DeviceHarvesterBlockEntity.AUG_VALIDATOR);
 
     private static Rarity getRarity(String name) {
 
