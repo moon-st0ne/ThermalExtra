@@ -10,7 +10,8 @@ import java.util.function.Supplier;
 public class ThermalExtraConfig implements IBaseConfig {
 
     private Supplier<Boolean> harvesterNetherWart;
-    private Supplier<Boolean> harvesterSugarCane;
+
+    private Supplier<Boolean> harvesterReplantBlock;
 
     private Supplier<Integer> dynamoColdPower;
     private Supplier<Integer> machineAdvancedRefineryPower;
@@ -29,16 +30,17 @@ public class ThermalExtraConfig implements IBaseConfig {
                 .comment("Should Nether Wart be harvestable by the Harvester?")
                 .define("Nether Wart Harvest", true);
 
-        harvesterSugarCane = builder
-                .comment("Should Sugar Cane be harvestable by the Harvester?")
-                .define("Sugar Cane Harvest", true);
+        harvesterReplantBlock = builder
+                .comment("Should the Harvester replant blocks?")
+                .define("Replant", true);
 
         builder.pop();
+
         builder.pop();
 
         builder.push("Dynamos");
 
-        builder.push("Stirling");
+        builder.push("Cold Dynamo");
 
         dynamoColdPower = builder
                 .comment("This sets the base power generation (RF/t) for the Cold Dynamo.")
@@ -89,17 +91,19 @@ public class ThermalExtraConfig implements IBaseConfig {
                 .defineInRange("Base Power", NitraticIgniterRecipeManager.instance().getBasePower(), NitraticIgniterRecipeManager.instance().getMinPower(), NitraticIgniterRecipeManager.instance().getMaxPower());
 
         builder.pop();
+
+        builder.pop();
     }
 
     @Override
     public void refresh() {
 
-        if(harvesterSugarCane != null) {
-            DeviceHarvesterBlockEntity.sugarCane = harvesterSugarCane.get();
+        if(harvesterNetherWart != null) {
+            DeviceHarvesterBlockEntity.canHarvestNetherWart = harvesterNetherWart.get();
         }
 
-        if(harvesterNetherWart != null) {
-            DeviceHarvesterBlockEntity.netherWart = harvesterNetherWart.get();
+        if(harvesterReplantBlock != null) {
+            DeviceHarvesterBlockEntity.shouldReplant = harvesterReplantBlock.get();
         }
 
         if (dynamoColdPower != null) {

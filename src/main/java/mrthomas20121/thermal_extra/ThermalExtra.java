@@ -78,9 +78,9 @@ public class ThermalExtra {
 	}
 
 	private void registrySetup(final NewRegistryEvent event) {
-		CONFIG_MANAGER.setupClient();
+		//CONFIG_MANAGER.setupClient();
 		CONFIG_MANAGER.setupServer();
-		CONFIG_MANAGER.setupCommon();
+		//CONFIG_MANAGER.setupCommon();
 	}
 
 	public void gatherData(final GatherDataEvent event) {

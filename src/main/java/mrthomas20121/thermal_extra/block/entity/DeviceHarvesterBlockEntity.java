@@ -1,6 +1,7 @@
 package mrthomas20121.thermal_extra.block.entity;
 
 import cofh.core.util.helpers.AugmentDataHelper;
+import cofh.lib.api.block.IHarvestable;
 import cofh.lib.api.block.entity.IAreaEffectTile;
 import cofh.lib.api.block.entity.ITickableTile;
 import cofh.lib.common.energy.EnergyStorageCoFH;
@@ -11,18 +12,21 @@ import cofh.thermal.lib.util.ThermalEnergyHelper;
 import mrthomas20121.thermal_extra.init.ThermalExtraBlockEntities;
 import mrthomas20121.thermal_extra.inventory.device.DeviceHarvesterMenu;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.NetherWartBlock;
-import net.minecraft.world.level.block.SugarCaneBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.common.util.FakePlayerFactory;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -38,15 +42,15 @@ import static cofh.thermal.lib.util.ThermalAugmentRules.createAllowValidator;
 
 public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implements ITickableTile.IServerTickable, IAreaEffectTile {
 
-    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_RF, TAG_AUGMENT_TYPE_AREA_EFFECT);
+    public static boolean shouldReplant = true;
+
+    public static final BiPredicate<ItemStack, List<ItemStack>> AUG_VALIDATOR = createAllowValidator(TAG_AUGMENT_TYPE_RF, TAG_AUGMENT_TYPE_AREA_EFFECT, TAG_AUGMENT_TYPE_UPGRADE);
 
     protected static final int BASE_PROCESS_MAX = 4000;
 
     protected ItemStorageCoFH chargeSlot = new ItemStorageCoFH(1, ThermalEnergyHelper::hasEnergyHandlerCap);
 
-
-    public static boolean sugarCane = true;
-    public static boolean netherWart = true;
+    public static boolean canHarvestNetherWart = true;
 
     protected static final int RADIUS = 2;
     protected int radius = RADIUS;
@@ -78,7 +82,7 @@ public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implement
                 if (process >= processMax) {
                     process -= processMax;
                     BlockPos.betweenClosedStream(worldPosition.offset(-radius, -1, -radius), worldPosition.offset(radius, 1, radius))
-                            .forEach(this::destroyBlock);
+                            .forEach(this::dropBlock);
                 }
             } else {
                 isActive = false;
@@ -166,21 +170,101 @@ public class DeviceHarvesterBlockEntity extends AugmentableBlockEntity implement
         return radius;
     }
 
-    protected void destroyBlock(BlockPos blockPos) {
+    protected void dropBlock(BlockPos pos) {
+        BlockState state = this.level.getBlockState(pos);
+        Block block = state.getBlock();
 
-        BlockState state = level.getBlockState(blockPos);
-        if (state.getBlock() instanceof CropBlock cropBlock) {
-            if(cropBlock.isMaxAge(state)) {
-                this.level.destroyBlock(blockPos, true);
+        Player player = FakePlayerFactory.getMinecraft((ServerLevel) this.level);
+
+        // IHarvestables are smart! They handle their own replanting.
+        if (block instanceof IHarvestable harvestable) {
+            if (harvestable.canHarvest(state)) {
+                harvestable.harvest(this.level, pos, state, player, shouldReplant);
+                return;
             }
         }
-        else if(state.getBlock() instanceof NetherWartBlock && netherWart) {
-            if(state.getValue(NetherWartBlock.AGE) == NetherWartBlock.MAX_AGE) {
-                this.level.destroyBlock(blockPos, true);
+
+        boolean seedDrop = false;
+
+        if (block instanceof CropBlock crop) {
+            BlockPos below = pos.below();
+            BlockState belowState = this.level.getBlockState(below);
+
+            shouldReplant &= belowState.getBlock().canSustainPlant(belowState, this.level, below, Direction.UP, crop);
+
+            if (crop.isMaxAge(state)) {
+                if (!this.level.isClientSide) {
+                    List<ItemStack> drops = Block.getDrops(state, (ServerLevel) this.level, pos, null, player, player.getMainHandItem());
+                    Item seedItem = crop.getCloneItemStack(this.level, pos, state).getItem();
+                    for (ItemStack drop : drops) {
+                        if (shouldReplant && !seedDrop) {
+                            if (drop.getItem() == seedItem) {
+                                drop.shrink(1);
+                                seedDrop = true;
+                            }
+                        }
+                        if (!drop.isEmpty()) {
+                            Containers.dropItemStack(this.level, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, drop);
+                        }
+                    }
+                    this.level.destroyBlock(pos, false, player);
+                    if (seedDrop) {
+                        this.level.setBlock(pos, crop.getStateForAge(0), 3);
+                    }
+                }
             }
-        }
-        else if(state.getBlock() instanceof SugarCaneBlock && sugarCane) {
-            this.level.destroyBlock(blockPos, true);
+        } else if (block instanceof NetherWartBlock crop && canHarvestNetherWart) {
+            BlockPos below = pos.below();
+            BlockState belowState = this.level.getBlockState(below);
+
+            shouldReplant &= belowState.getBlock().canSustainPlant(belowState, this.level, below, Direction.UP, crop);
+
+            if (state.getValue(NetherWartBlock.AGE) >= 3) {
+                if (!this.level.isClientSide) {
+                    List<ItemStack> drops = Block.getDrops(state, (ServerLevel) this.level, pos, null, player, player.getMainHandItem());
+                    Item seedItem = crop.getCloneItemStack(this.level, pos, state).getItem();
+                    for (ItemStack drop : drops) {
+                        if (shouldReplant && !seedDrop) {
+                            if (drop.getItem() == seedItem) {
+                                drop.shrink(1);
+                                seedDrop = true;
+                            }
+                        }
+                        if (!drop.isEmpty()) {
+                            Containers.dropItemStack(this.level, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, drop);
+                        }
+                    }
+                    this.level.destroyBlock(pos, false, player);
+                    if (seedDrop) {
+                        this.level.setBlock(pos, crop.defaultBlockState(), 3);
+                    }
+                }
+            }
+        } else if (block instanceof CocoaBlock crop) {
+            shouldReplant &= crop.canSurvive(state, this.level, pos);
+
+            if (state.getValue(CocoaBlock.AGE) >= 2) {
+                if (!this.level.isClientSide) {
+                    Direction facing = state.getValue(CocoaBlock.FACING);
+                    List<ItemStack> drops = Block.getDrops(state, (ServerLevel) this.level, pos, null, player, player.getMainHandItem());
+                    Item seedItem = new ItemStack(crop).getItem();
+                    for (ItemStack drop : drops) {
+                        if (shouldReplant && !seedDrop) {
+                            if (drop.getItem() == seedItem) {
+                                drop.shrink(1);
+                                seedDrop = true;
+                            }
+                        }
+                        if (!drop.isEmpty()) {
+                            Containers.dropItemStack(this.level, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, drop);
+                        }
+                    }
+                    this.level.destroyBlock(pos, false, player);
+                    if (seedDrop) {
+                        this.level.setBlock(pos, crop.defaultBlockState().setValue(CocoaBlock.FACING, facing), 3);
+                    }
+                }
+            }
         }
     }
 
