@@ -727,9 +727,8 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(Fluids.LAVA, 1000))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(Items.BLAZE_POWDER), 0.25f))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(Items.FLINT), 0.25f))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(Items.MAGMA_CREAM), 0.1f))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(Blocks.MAGMA_BLOCK), 0.25f))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(Items.BLAZE_POWDER), 1.25f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/lava"));
 
         MachineRecipeBuilder.endothermic_dehydrator()

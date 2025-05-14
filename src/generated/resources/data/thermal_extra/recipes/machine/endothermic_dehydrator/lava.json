@@ -10,15 +10,11 @@
   "result": [
     {
       "chance": 0.25,
+      "item": "minecraft:magma_block"
+    },
+    {
+      "chance": 1.25,
       "item": "minecraft:blaze_powder"
-    },
-    {
-      "chance": 0.25,
-      "item": "minecraft:flint"
-    },
-    {
-      "chance": 0.1,
-      "item": "minecraft:magma_cream"
     }
   ]
 }
