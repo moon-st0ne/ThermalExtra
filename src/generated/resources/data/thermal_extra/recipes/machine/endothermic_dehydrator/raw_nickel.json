@@ -11,8 +11,7 @@
     {
       "chance": 1.25,
       "count": 2,
-      "item": "thermal:nickel_dust",
-      "locked": true
+      "item": "thermal:nickel_dust"
     },
     {
       "chance": 0.5,

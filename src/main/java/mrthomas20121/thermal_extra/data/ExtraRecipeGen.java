@@ -735,7 +735,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_COPPER.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("copper_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("copper_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("copper_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("gold_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_copper"));
@@ -743,7 +743,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_GOLD.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("gold_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("gold_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("gold_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("copper_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_gold"));
@@ -751,7 +751,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_IRON.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("iron_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("iron_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("iron_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("nickel_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_iron"));
@@ -759,7 +759,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_LEAD.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("lead_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("lead_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("lead_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("silver_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_lead"));
@@ -767,7 +767,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_NICKEL.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("nickel_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("nickel_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("nickel_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("iron_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_nickel"));
@@ -775,7 +775,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_SILVER.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("silver_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("silver_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("silver_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("lead_dust")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_silver"));
@@ -783,7 +783,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.endothermic_dehydrator()
                 .energy(100000)
                 .input(new FluidStack(ThermalExtraFluids.RAW_TIN.still().get(), 90))
-                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("tin_dust"), 2), 1.25f, true))
+                .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("tin_dust"), 2), 1.25f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("tin_dust")), 0.50f))
                 .output(MachineRecipeBuilder.ChanceItemStack.of(new ItemStack(ITEMS.get("apatite")), 0.15f))
                 .save(consumer, modLoc("machine/endothermic_dehydrator/raw_tin"));
@@ -1021,12 +1021,6 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
                 .output(ThermalCore.ITEMS.get("redstone_servo"))
                 .save(consumer, "thermal_extra:machine/component_assembly/redstone_servo");
 
-        MachineRecipeBuilder.component_assembly()
-                .energy(5000)
-                .input(Tags.Items.INGOTS_IRON)
-                .output(ThermalCore.ITEMS.get("redstone_servo"))
-                .save(consumer, "thermal_extra:machine/component_assembly/redstone_servo1");
-
         TagKey<Item> rawAluminum = forgeTag("raw_materials/aluminum");
         TagKey<Item> rawUranium = forgeTag("raw_materials/uranium");
         TagKey<Item> rawOsmium = forgeTag("raw_materials/osmium");
@@ -1208,7 +1202,7 @@ public class ExtraRecipeGen extends RecipeProviderCoFH {
         MachineRecipeBuilder.nitratic_igniter()
                 .energy(12000)
                 .input(Ingredient.of(tagKey))
-                .output(new MachineRecipeBuilder.ChanceItemStack(new ItemStack(mainOreChunk.get(), 3), 1.25f, true))
+                .output(new MachineRecipeBuilder.ChanceItemStack(new ItemStack(mainOreChunk.get(), 3), 1.25f, false))
                 .output(new MachineRecipeBuilder.ChanceItemStack(new ItemStack(mainOreChunk.get(), 1), 0.55f, false))
                 .output(new MachineRecipeBuilder.ChanceItemStack(new ItemStack(secondaryOreChunk.get(), 1), 0.25f, false))
                 .exp(1.1f)
