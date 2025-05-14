@@ -47,6 +47,9 @@ public class ExtraLangGen extends LanguageProvider {
         add("info.thermal_extra.endothermic_dehydrator.0", "Dries out items or fluids to yield various products.");
         add("info.thermal_extra.endothermic_dehydrator.1", "May also concentrate fluids, yielding a more potent fluid.");
         add("info.thermal_extra.endothermic_dehydrator.2", "Automatic drying rack.");
+        add("info.thermal_extra.advanced_refinery.0", "A complex distillery that refines fluids into more distinct products.");
+        add("info.thermal_extra.advanced_refinery.1", "Supports more item and fluid outputs than the Fractionating Still.");
+        add("info.thermal_extra.advanced_refinery.2", "Get more from your oils.");
         add("upgrade.thermal_extra.augment_upgrade", "Augment Upgrade");
         add("item.thermal_extra.smithing_template.augment_upgrade.additions_slot_description", "Add Metal Ingot");
         add("item.thermal_extra.smithing_template.augment_upgrade.applies_to", "Thermal Augments");
